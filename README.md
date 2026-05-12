@@ -2,7 +2,7 @@
 
 > From vague requirement to working POC — in 2 days, with 1 developer, using 5 structured prompts.
 
----
+
 
 ## The Problem with "Just Vibe Code It"
 
@@ -20,7 +20,6 @@ The result: a POC that reflects how the business actually works, not just what t
 
 **Validated across 5 POCs. Token budget: 600–800K per POC. Time: 2 days.**
 
----
 
 ## How It Works
 
@@ -60,8 +59,6 @@ Step 2 forces you to articulate the application through the lens of its core per
 
 Once that exists, everything downstream — the DDD mapping, the spec, the code — is structurally correct because it's grounded in real domain understanding.
 
----
-
 ## The SKILL.md System
 
 ProFlow uses SKILL.md files to automate the scaffolding step without burning tokens on repeated context-setting.
@@ -72,7 +69,7 @@ Each SKILL.md file is a structured instruction set that tells the AI model exact
 |------|---------|
 | `skills/frontend.md` | Component structure, state management, routing conventions |
 | `skills/backend.md` | API design, service layer patterns, data access conventions |
-| `skills/[third].md` | [description] |
+| `skills/domain_knowledge.md` | DDD concepts + project-specific domain-subdomain quadrant — carries domain knowledge from Step 3 into Step 5 so scaffolding is domain-aware, not just technically correct|
 
 The model reads the relevant SKILL.md at the start of each scaffolding session. No repeated explanation. No drift from conventions. Token-efficient by design.
 
@@ -93,20 +90,18 @@ The model reads the relevant SKILL.md at the start of each scaffolding session. 
 ---
 
 ## Validated POCs
-
+ 
 ProFlow has been tested against 5 different POCs across different domains:
-
-| # | Domain | Notes |
-|---|--------|-------|
-| 1 | [POC 1 name/domain] | [one line] |
-| 2 | [POC 2 name/domain] | [one line] |
-| 3 | [POC 3 name/domain] | [one line] |
-| 4 | [POC 4 name/domain] | [one line] |
-| 5 | [POC 5 name/domain] | [one line] |
-
-Each example folder contains: the Step 2 persona output, the Step 3 DDD quadrant, and the generated spec. The scaffolded code is not included — that's yours to run.
-
----
+ 
+| # | Domain | Outcome |
+|---|--------|---------|
+| 1 | Search & recommendation | Semantic search with personalised recommendations — domain model defined retrieval boundaries before any vector DB decisions |
+| 2 | API integration layer | Low-intervention connector for rapid external resource onboarding — spec surfaced integration edge cases before a single endpoint was designed |
+| 3 | Procurement automation | Procurement workflow with AI-driven email outreach — persona model caught business rules that the original requirements had missed entirely |
+| 4 | Data acquisition pipeline | Automated web sourcing pipeline — DDD quadrant separated core scraping logic from downstream processing before build began |
+| 5 | Productivity tool integration | Surfaced genuine technical constraints at spec stage, not after weeks of development — early invalidation is a valid and valuable POC outcome |
+ 
+POC domains are intentionally generalised. The prompts and SKILL.md files are the transferable layer — not the specific business context they were applied to.
 
 ## Prerequisites
 
@@ -120,7 +115,7 @@ Each example folder contains: the Step 2 persona output, the Step 3 DDD quadrant
 
 **Step 1 — Intake**
 
-Open `prompts/01-requirement-intake.md`. Paste your manager's requirement. Run it. You get a structured problem statement.
+Open `prompts/01-requirement-intake.md`. Paste your requirements. Run it. You get a structured problem statement.
 
 **Step 2 — Persona Model**
 
@@ -154,14 +149,9 @@ proflow/
 ├── skills/
 │   ├── frontend.md
 │   ├── backend.md
-│   └── [third].md
-└── examples/
-    ├── poc-01/
-    ├── poc-02/
-    └── ...
+│   └── domain_knowledge.md
 ```
 
----
 
 ## Who This Is For
 
@@ -170,7 +160,7 @@ proflow/
 - **Founders** who want to validate product ideas without a full team
 - **Anyone** tired of AI-generated code that's technically correct but domain-wrong
 
----
+
 
 ## Why Not Just Use an Agent?
 
@@ -178,8 +168,11 @@ Agents are good at execution. They're bad at understanding. An agent given a vag
 
 ProFlow is not an agent. It's a structured thinking process that happens to be assisted by AI. The human stays in the loop at every step — especially Step 2, where domain understanding either gets captured correctly or doesn't. The agent (Claude Code, Codex, Cursor) only appears at Step 5, when there's enough structure for it to execute reliably.
 
----
+
+> use the chat interface of claude or chatgpt. not IDE before coding till step 3. A little tip of personal experience
+
 
 ## Contributing
 
 If you've used ProFlow to build a POC, open a PR adding your example to `/examples`. Include the Step 2 and Step 3 outputs — those are the most useful artifacts for others to learn from.
+

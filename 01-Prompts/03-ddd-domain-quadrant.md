@@ -1,0 +1,1 @@
+Let's design the business domain, sub domain quadrant (i.e.,on core, generic/supporting, generic and supporting). What is essential the POC from Domain Driven Design principle.
